@@ -14,3 +14,21 @@
 .hero-background.is-transparent {
   opacity: 0.3;
 }
+
+.page-header {
+text-align: center;
+
+
+}
+
+.hero-background.page-header{
+  color:gold;
+  text-align: center; 
+  margin-top: 20px; 
+  font-size: xx-large; 
+}
+.card {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: rgb(226, 223, 223);
+
+}
