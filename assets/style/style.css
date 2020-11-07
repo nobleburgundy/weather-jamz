@@ -1,6 +1,9 @@
+
 .hero.has-background {
   position: relative;
   overflow: hidden;
+  /* background-image: url(../anemoi.png);  */
+
 }
 .hero-background {
   position: absolute;
