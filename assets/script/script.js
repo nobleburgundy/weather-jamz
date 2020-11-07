@@ -1,4 +1,5 @@
 const apiKey = "174cadade97542fff7b88f7fc3b6a9ee";
+let weatherWord = ''
 
 $(document).ready(function() {
     //get input from frontend
@@ -18,4 +19,20 @@ $(document).ready(function() {
             $("#weather-music-list").append(liEl);
         }
     });
+    getWeatherWord();
 });
+
+
+function getWeatherWord(){
+    const weatherApiKey = "5b1c716e64155c6f31f83fc752ff2b1f";
+    let searchCity = "Minneapolis";
+    let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchCity}&appid=${weatherApiKey}`;
+    
+    $.ajax({
+        url: weatherApiUrl,
+        method: "GET",
+    }).then(function(response){
+        console.log(response.weather[0].main);
+        weatherWord = response.weather[0].main;
+    });
+} 
