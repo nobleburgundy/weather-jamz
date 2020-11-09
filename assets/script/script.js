@@ -4,8 +4,8 @@ let weatherWord = "";
 
 $(document).ready(function () {
   //get input from frontend
-  let searchWord = "sunny";
-  let apiUrl = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${searchWord}&api_key=${API_KEY}&limit=${LASTFM_API_LIMIT}&format=json`;
+  getWeatherWord();
+  let apiUrl = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${weatherWord}&api_key=${API_KEY}&limit=${LASTFM_API_LIMIT}&format=json`;
   $.ajax({
     url: apiUrl,
     method: "POST",
@@ -20,7 +20,6 @@ $(document).ready(function () {
       $("#weather-music-list").append(liEl);
     }
   });
-  getWeatherWord();
 });
 
 function getWeatherWord() {
