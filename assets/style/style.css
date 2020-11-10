@@ -19,8 +19,12 @@ text-align: center;
 }
 
 
-.card {
+.card  {
   background-color: rgba(80, 68, 23, 0.481);
   color: rgb(250, 248, 248);
 
+}
+
+.card * {
+  padding:10px;
 }
