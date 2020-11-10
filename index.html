@@ -9,41 +9,47 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="./assets/style/style.css">
+  <link rel="stylesheet" href="./assets/style/style.css" />
 </head>
+
 <body>
   <div class="hero is-fullheight has-background">
     <img alt="Fill anemoi" class="hero-background" src="anemoi.png" />
-      <div class="container">
-        <header class="title is-1 has-text-centered has-text-warning"><b>Lets Jam</b> </header>
-        <div class="hero-body">
-          <div class="columns">
-            <div class="column">
-              <div class="card">
-                <header class="card-header has-background-warning">
-                  <h4 class="title has-text-black">Search City for Weather</h4>
-                </header>
-                  <div class="card-content"></div>
-                  <div class="subtitle has-text-white">City Name:</div>
-                </div>
+    <div class="container">
+      <header class="title is-1 has-text-centered has-text-warning">
+        <b>Let's Jam</b>
+      </header>
+      <div class="hero-body">
+        <div class="columns">
+          <div class="column">
+            <div class="card">
+              <header class="card-header has-background-warning">
+                <h4 class="title has-text-black">Search City for Weather</h4>
+              </header>
+              <div class="card-content"></div>
+              <div class="subtitle has-text-white">City Name:</div>
+              <input class="input is-warning" id="citySearch" type="text" placeholder="Search City for Weather" />
+              <button class="button is-warning" id="searchBtn">
+                Search for Weather
+              </button>
             </div>
-            <div class="column">
-              <div class="card">
-                <header class="card-header has-background-warning">
-                  <h1 class="title has-text-black">Jamz</h1>
-                </header>
-                <div class="card-content">
-                  <ul id="weather-music-list" class="music-list is-size-5" style="font-weight: bold;"></ul>
-                </div>
+          </div>
+          <div class="column">
+            <div class="card">
+              <header class="card-header has-background-warning">
+                <h1 class="title has-text-black">Jamz</h1>
+              </header>
+              <div class="card-content">
+                <ul id="weather-music-list" class="music-list is-size-5" style="font-weight: bold"></ul>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-    <script src="./assets/script/script.js"></script>
-
+  </div>
+  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+  <script src="./assets/script/script.js"></script>
 </body>
 
 </html>
