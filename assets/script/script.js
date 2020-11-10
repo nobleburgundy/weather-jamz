@@ -7,34 +7,40 @@ let city;
 $(document).ready(function () {
   // listen for city input
   // until front-end is search input is hooked up, short-circuit with Minneapolis
-  city = "Minneapolis";
-  // get weather word for current weather in that city
-  let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${OPENWEATHER_API_KEY}`;
-  $.ajax({
-    url: weatherApiUrl,
-    method: "GET",
-  }).then(function (response) {
-    weatherWord = response.weather[0].main;
-    console.log(`weatherWord = ${weatherWord}, city = ${city}`);
-    let apiUrl = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${weatherWord}&api_key=${LASTFM_API_KEY}&limit=${LASTFM_API_LIMIT}&format=json`;
-    // get top tag tracks from LastFM
+  $("#searchBtn").on("click", function() {
+    $("#weather-music-list").empty();
+    city = $("#citySearch").val();
+    // get weather word for current weather in that city
+    let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${OPENWEATHER_API_KEY}`;
     $.ajax({
-      url: apiUrl,
-      method: "POST",
+      url: weatherApiUrl,
+      method: "GET",
     }).then(function (response) {
-      parseLastFMTracksResponse(response);
+      console.log(response);
+      weatherWord = response.weather[0].main;
+      let weatherTemp ="";
+      let weatherIcon = response.weather[0].icon;
+      displayWeather(response);
+      console.log(`weatherWord = ${weatherWord}, city = ${city}`);
+      let lastFMapiUrl = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${weatherWord}&api_key=${LASTFM_API_KEY}&limit=${LASTFM_API_LIMIT}&format=json`;
+      // get top tag tracks from LastFM
+      $.ajax({
+        url: lastFMapiUrl,
+        method: "POST",
+      }).then(function (responseFM) {
+        parseLastFMTracksResponse(responseFM);
+      });
     });
   });
 });
 
-function parseLastFMTracksResponse(response) {
-  for (let index = 0; index < response.tracks.track.length; index++) {
-    let artistName = response.tracks.track[index].artist.name;
-    let trackName = response.tracks.track[index].name;
+function parseLastFMTracksResponse(responseFM) {
+  for (let index = 0; index < responseFM.tracks.track.length; index++) {
+    let artistName = responseFM.tracks.track[index].artist.name;
+    let trackName = responseFM.tracks.track[index].name;
     console.log(`artistName: ${artistName}, trackName: ${trackName}`);
     let liEl = $("<li>");
     liEl.text(artistName + " - " + trackName);
     $("#weather-music-list").append(liEl);
   }
 }
-//Testing 1, 2, 3.
