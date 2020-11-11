@@ -45,7 +45,8 @@
                 <h1 class="title has-text-white">Jamz</h1>
               </header>
               <div class="card-content">
-                <ul id="weather-music-list" class="music-list is-size-5" style="font-weight: bold"></ul>
+                <!-- <ul id="weather-music-list" class="music-list is-size-5" style="font-weight: bold"></ul> -->
+                <div id="player"></div>
               </div>
             </div>
           </div>
@@ -55,6 +56,30 @@
   </div>
   <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   <script src="./assets/script/script.js"></script>
+  <script>
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '390',
+        width: '640',
+        events: {
+          'onReady': onPlayerReady
+        }
+      });
+    }
+
+    function onPlayerReady(event) {
+      // load playlist here - will need to update this array to feed in results of city weather search
+      event.target.loadPlaylist(["cNjRQo-zpKA", "QEedJ7Gwi-w"]);
+    }
+  </script>
 </body>
 
 </html>
