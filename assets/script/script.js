@@ -3,6 +3,8 @@ const LASTFM_API_LIMIT = 20;
 const OPENWEATHER_API_KEY = "5b1c716e64155c6f31f83fc752ff2b1f";
 let weatherWord;
 let city;
+let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+console.log(searchHistory);
 
 $(document).ready(function () {
   // listen for city input
