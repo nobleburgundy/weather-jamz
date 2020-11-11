@@ -4,10 +4,10 @@ const OPENWEATHER_API_KEY = "5b1c716e64155c6f31f83fc752ff2b1f";
 let weatherWord;
 let city;
 
-$(document).ready(function() {
+$(document).ready(function () {
   // listen for city input
   // until front-end is search input is hooked up, short-circuit with Minneapolis
-  $("#searchBtn").on("click", function() {
+  $("#searchBtn").on("click", function () {
     $("#weather-music-list").empty();
     city = $("#citySearch").val();
     // get weather word for current weather in that city
@@ -44,17 +44,15 @@ function parseLastFMTracksResponse(responseFM) {
 }
 
 function displayWeather(response) {
-  let weatherTemp = response.main.temp;
+  let cityName = $(".nameTemp").html(response.name + " " + response.main.temp + " °F");
+  let weatherDay = $(".weatherDay").html(`It's a ${weatherWord} day`);
   let weatherIcon = response.weather[0].icon;
-  let iconUrl ="https://openweathermap.org/img/w/" + weatherIcon + ".png";
+  let iconUrl = "https://openweathermap.org/img/w/" + weatherIcon + ".png";
   weatherWord = response.weather[0].main;
   let divEl = $("<div>");
   let imgEl = $("<img>");
-  
-  imgEl.attr("src", iconUrl);
+  // get the icon to show up correctly
   divEl.append(imgEl);
-  divEl.append(`Temperature: ${weatherTemp}`);
-  divEl.append(`It's a ${weatherWord} day`);
+  imgEl.attr("src", iconUrl);
   $("#currentWeather").append(divEl);
-  
 }
