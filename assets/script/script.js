@@ -1,12 +1,11 @@
-const LASTFM_API_KEY = "174cadade97542fff7b88f7fc3b6a9ee";
-const LASTFM_API_LIMIT = 20;
 const OPENWEATHER_API_KEY = "5b1c716e64155c6f31f83fc752ff2b1f";
+const YOUTUBE_API_KEY = "AIzaSyD4dywNr8AmMsQsbUQP_YXNAsTwGQEHvzQ";
+const YOUTUBE_SEARCH_ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
 let weatherWord;
 let city;
 
 $(document).ready(function () {
   // listen for city input
-  // until front-end is search input is hooked up, short-circuit with Minneapolis
   $("#searchBtn").on("click", function () {
     $("#weather-music-list").empty();
     city = $("#citySearch").val();
@@ -16,32 +15,25 @@ $(document).ready(function () {
       url: weatherApiUrl,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
       weatherWord = response.weather[0].main;
       displayWeather(response);
       console.log(`weatherWord = ${weatherWord}, city = ${city}`);
-      let lastFMapiUrl = `https://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${weatherWord}&api_key=${LASTFM_API_KEY}&limit=${LASTFM_API_LIMIT}&format=json`;
-      // get top tag tracks from LastFM
+      let queryString = `?part=snippet&maxResults=25&q=${weatherWord}%20Music&type=playlist&key=${YOUTUBE_API_KEY}`;
+      let youtubeAPIURL = YOUTUBE_SEARCH_ENDPOINT + queryString;
       $.ajax({
-        url: lastFMapiUrl,
-        method: "POST",
-      }).then(function (responseFM) {
-        parseLastFMTracksResponse(responseFM);
+        url: youtubeAPIURL,
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+        // get a random playlist in the response
+        let randomInt = Math.floor(Math.random() * response.items.length);
+        let randomPlaylistId = response.items[randomInt].id.playlistId;
+        playlistId = randomPlaylistId;
+        createIframe(playlistId);
       });
     });
   });
 });
-
-function parseLastFMTracksResponse(responseFM) {
-  for (let index = 0; index < responseFM.tracks.track.length; index++) {
-    let artistName = responseFM.tracks.track[index].artist.name;
-    let trackName = responseFM.tracks.track[index].name;
-    console.log(`artistName: ${artistName}, trackName: ${trackName}`);
-    let liEl = $("<li>");
-    liEl.text(artistName + " - " + trackName);
-    $("#weather-music-list").append(liEl);
-  }
-}
 
 function displayWeather(response) {
   let cityName = $(".nameTemp").html(response.name + " " + response.main.temp + " °F");
@@ -51,8 +43,21 @@ function displayWeather(response) {
   weatherWord = response.weather[0].main;
   let divEl = $("<div>");
   let imgEl = $("<img>");
-  // get the icon to show up correctly
+
+  imgEl.attr("src", iconUrl);
   divEl.append(imgEl);
   imgEl.attr("src", iconUrl);
   $("#currentWeather").append(divEl);
+}
+
+// Youtube Code - Create the embedable iframe
+function createIframe(playlistId) {
+  let youtubeEmbedURL = `https://www.youtube.com/embed?listType=playlist&list=${playlistId}`;
+  let iframe = $("<iframe>");
+  iframe.attr("src", youtubeEmbedURL);
+  iframe.attr("height", 390);
+  iframe.attr("width", 640);
+  iframe.attr("frameborder", "0");
+  iframe.attr("allowfullscreen");
+  $("#player").empty().append(iframe);
 }
