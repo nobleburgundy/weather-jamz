@@ -17,36 +17,36 @@
 
 <body>
   <div class="header">
-    <img alt="Fill anemoi" class="hero-background" src="assets/top.jpg" />
-    <!--trying to add a header with this img above :( -->
+    <img alt="Fill anemoi" class="img-header" src="assets/top3.jpg" />
   </div>
   <div class="container">
     <div class="hero-body">
       <div class="columns">
         <div class="column">
           <div class="card">
-            <header class="card-header has-background-black">
-              <h4 class="title has-text-white">Search City for Weather</h4>
+            <h4 class="title has-text-Warning">Search City for Weather</h4>
             </header>
             <div class="card-content"></div>
-            <div class="subtitle has-text-white ">City Name:</div>
+            <div class="subtitle has-text-warning ">City Name:</div>
             <input class="input is-warning" id="citySearch" type="text" />
             <button class="button is-warning" id="searchBtn">
               Search for Weather
             </button>
           </div>
           <div id="display">
-            <h1 class="nameTemp has-text-white"></h1>
-            <p class="weatherDay has-text-white"></p>
+            <h1 class="nameTemp has-text-warning"></h1>
+            <p class="weatherDay has-text-warning"></p>
           </div>
+        </div>
+        <div id="historyList">
+          <ul id="whistoryList" class="weather-list is-size-5" sytle="font-weight: bold;"></ul>
         </div>
         <div class="column">
           <div class="card">
+            <h4 class="title has-text-warning">Play a Weather Jamz</h4>
             </header>
-            <div class="card-content">
-              <!-- <ul id="weather-music-list" class="music-list is-size-5" style="font-weight: bold"></ul> -->
-              <div id="player"></div>
-            </div>
+            <!-- <ul id="weather-music-list" class="music-list is-size-5" style="font-weight: bold"></ul> -->
+            <div id="player"></div>
           </div>
         </div>
       </div>
@@ -55,30 +55,6 @@
   </div>
   <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   <script src="./assets/script/script.js"></script>
-  <script>
-    var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    var player;
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        height: '390',
-        width: '640',
-        events: {
-          'onReady': onPlayerReady
-        }
-      });
-    }
-
-    function onPlayerReady(event) {
-      // load playlist here - will need to update this array to feed in results of city weather search
-      event.target.loadPlaylist(["cNjRQo-zpKA", "QEedJ7Gwi-w"]);
-    }
-  </script>
 </body>
 
 </html>
