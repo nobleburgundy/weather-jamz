@@ -9,7 +9,7 @@ $(document).ready(function () {
   //iterate through local storage history
   for (let i = 0; i < history.length; i++) {
     //passing the history data of local storage to a function named display History
-    displayHist(history[i]);
+    displayHistory(history[i]);
   }
 
   $("#historyList").on("click", "li", function () {
@@ -25,7 +25,7 @@ $(document).ready(function () {
       if (history.indexOf(city) === -1) {
         history.push(city);
         window.localStorage.setItem("history", JSON.stringify(history));
-        displayHist(city);
+        displayHistory(city);
       }
     }
   });
@@ -38,7 +38,9 @@ function apiCalls(city) {
     method: "GET",
   }).then(function (response) {
     weatherWord = response.weather[0].main;
-    displayWeather(response);
+    let weatherContent = displayWeather(response);
+    $(".weatherDay").html(weatherContent);
+    console.log(weatherContent);
     console.log(`weatherWord = ${weatherWord}, city = ${city}`);
     let queryString = `?part=snippet&maxResults=25&q=${weatherWord}%20Music&type=playlist&key=${YOUTUBE_API_KEY}`;
     let youtubeAPIURL = YOUTUBE_SEARCH_ENDPOINT + queryString;
@@ -57,18 +59,13 @@ function apiCalls(city) {
 }
 
 function displayWeather(response) {
-  $(".nameTemp").html(response.name + " " + response.main.temp + " °F");
-  $(".weatherDay").html(`It's a ${weatherWord} day`);
-  let weatherIcon = response.weather[0].icon;
-  let iconUrl = "https://openweathermap.org/img/w/" + weatherIcon + ".png";
-  weatherWord = response.weather[0].main;
-  let divEl = $("<div>");
-  let imgEl = $("<img>");
-
-  imgEl.attr("src", iconUrl);
-  divEl.append(imgEl);
-  imgEl.attr("src", iconUrl);
-  $("#currentWeather").append(divEl);
+  console.log(response);
+  let date = new Date();
+  return `<br><strong>${date}</strong><br><br><h1><em>${
+    response.name
+  }</em></h1><img src='http://openweathermap.org/img/wn/${
+    response.weather[0].icon
+  }.png'><strong><em>${weatherWord}</em></strong><br><br>Temperature: ${response.main.temp.toFixed(1)} &deg; F</br> `;
 }
 
 // Youtube Code - Create the embedable iframe
@@ -83,7 +80,8 @@ function createIframe(playlistId) {
   $("#player").empty().append(iframe);
 }
 
-function displayHist(city) {
+//Creates a list of recently searched cities
+function displayHistory(city) {
   let liEl = $("<li>");
   liEl.addClass("list-group-item");
   liEl.append(city);
