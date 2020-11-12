@@ -13,48 +13,58 @@
   <link rel="icon" href="anemoi1.png" type="image/x-icon" />
 </head>
 
-
-
 <body>
   <div class="header">
     <img alt="Fill anemoi" class="img-header" src="assets/top3.jpg" />
   </div>
   <div class="container">
-    <div class="hero-body">
-      <div class="columns">
-        <div class="column">
-          <div class="card">
-            <h4 class="title has-text-Warning">Search City for Weather</h4>
-            </header>
-            <div class="card-content"></div>
-            <div class="subtitle has-text-warning ">City Name:</div>
-            <input class="input is-warning" id="citySearch" type="text" />
-            <button class="button is-warning" id="searchBtn">
-              Search for Weather
-            </button>
-          </div>
-          <div id="display">
-            <h1 class="nameTemp has-text-warning"></h1>
-            <p class="weatherDay has-text-warning"></p>
+    <div class="columns">
+      <div class="column is-11 is-offset-one">
+        <div class="card">
+          <div class="card-content">
+            <!-- REMOVE THE CHECKBOX FOR DEMO -->
+            <label class="checkbox mb-3 float-right">
+              <input type="checkbox" id="youtubeCheckbox">
+              Call YouTube API (only do this if you need to, there's a quota limit)
+            </label>
+            <input class="input is-warning is-rounded has-text-weight-bold" id="citySearch" type="text"
+              placeholder="City Name..."></input>
+            <div><button class="button is-warning has-text-black has-text-weight-bold mt-3" id="searchBtn">Search for
+                Weather</button></div>
           </div>
         </div>
-        <div id="historyList">
-          <ul id="whistoryList" class="weather-list is-size-5" sytle="font-weight: bold;"></ul>
-        </div>
-        <div class="column">
-          <div class="card">
-            <h4 class="title has-text-warning">Play a Weather Jamz</h4>
-            </header>
-            <!-- <ul id="weather-music-list" class="music-list is-size-5" style="font-weight: bold"></ul> -->
-            <div id="player"></div>
+        <div class="columns">
+          <div class="column is-half is-offset-1">
+            <div class="card">
+              <div class="card-content">
+                <div id="display">
+                  <h1 class="nameTemp has-text-warning is-size-1 is-size-4-mobile"></h1>
+                  <p class="weatherDay has-text-warning is-size-3 is-size-4-mobile"></p>
+                  <div id="history">
+                    <br>
+                    <h2 class="has-text-warning is-size-3 ">Previous Searches</h2>
+                    <ul class="has-text-warning" id="historyList"></ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-half">
+            <div class="card">
+              <h4 class="title has-text-warning is-hidden">Play Weather Jamz</h4>
+              <div id="player"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
   </div>
+  </div>
+  </div>
   <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
   <script src="./assets/script/script.js"></script>
+
 </body>
 
 </html>

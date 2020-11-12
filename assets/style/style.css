@@ -1,34 +1,40 @@
 
 html, body{
-background-color: black;
-margin: 0;
-padding: 0;
-}
-
-.page-header {
-text-align: center;
-}
-
-
-.card  {
-  background-color: rgba(0, 0, 0, 0.9);
-  color: rgb(250, 248, 248);
-  margin:0;
-  padding:0;
-
-
-}
-
-.header {
-  background-color: black ;
-  margin:0;
-  padding:0;
-}
-
-.img-header {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 600px;
+  background-color: black;
+  margin: 0;
+  padding: 0;
   }
+  
+  .page-header {
+  text-align: center;
+  }
+  
+  
+  .card  {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: rgb(250, 248, 248);
+    margin:0;
+    padding:0;
+  
+  
+  }
+  
+  .header {
+    background-color: black ;
+    margin:0;
+    padding:0;
+  }
+  
+  .img-header {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    }
 
+
+
+  .button {
+    text-align: center;
+
+  }
