@@ -24,12 +24,10 @@ $(document).ready(function () {
         url: youtubeAPIURL,
         method: "GET",
       }).then(function (response) {
-        console.log(response);
         // get a random playlist in the response
         let randomInt = Math.floor(Math.random() * response.items.length);
         let randomPlaylistId = response.items[randomInt].id.playlistId;
-        playlistId = randomPlaylistId;
-        createIframe(playlistId);
+        createYoutubeIframe(randomPlaylistId);
       });
     });
   });
@@ -51,8 +49,8 @@ function displayWeather(response) {
 }
 
 // Youtube Code - Create the embedable iframe
-function createIframe(playlistId) {
-  let youtubeEmbedURL = `https://www.youtube.com/embed?listType=playlist&list=${playlistId}`;
+function createYoutubeIframe(playlistId) {
+  let youtubeEmbedURL = `https://www.youtube.com/embed?autoplay=1&listType=playlist&list=${playlistId}`;
   let iframe = $("<iframe>");
   iframe.attr("src", youtubeEmbedURL);
   iframe.attr("height", 390);
