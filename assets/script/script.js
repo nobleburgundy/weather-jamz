@@ -1,8 +1,10 @@
 const OPENWEATHER_API_KEY = "5b1c716e64155c6f31f83fc752ff2b1f";
-const YOUTUBE_API_KEY = "AIzaSyD4dywNr8AmMsQsbUQP_YXNAsTwGQEHvzQ";
+const YOUTUBE_API_KEY = "AIzaSyAG57O2KP6IuKQnNvZsGtpDbmaz4Zad3o8";
 const YOUTUBE_SEARCH_ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
 let weatherWord;
 let city;
+// switch to prevet calling the youtube api unless needed due to quota
+let callYoutubeApi = false;
 
 $(document).ready(function () {
   let history = JSON.parse(window.localStorage.getItem("history")) || [];
@@ -31,6 +33,11 @@ $(document).ready(function () {
   });
 });
 
+// Listener for youtube api checkbox
+$("#youtubeCheckbox").on("change", function () {
+  callYoutubeApi = this.checked;
+});
+
 function apiCalls(city) {
   let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${OPENWEATHER_API_KEY}`;
   $.ajax({
@@ -44,17 +51,23 @@ function apiCalls(city) {
     console.log(`weatherWord = ${weatherWord}, city = ${city}`);
     let queryString = `?part=snippet&maxResults=25&q=${weatherWord}%20Music&type=playlist&key=${YOUTUBE_API_KEY}`;
     let youtubeAPIURL = YOUTUBE_SEARCH_ENDPOINT + queryString;
-    $.ajax({
-      url: youtubeAPIURL,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-      // get a random playlist in the response
-      let randomInt = Math.floor(Math.random() * response.items.length);
-      let randomPlaylistId = response.items[randomInt].id.playlistId;
-      playlistId = randomPlaylistId;
-      createIframe(playlistId);
-    });
+    // Switch for calling youtubeApi only when needed
+    if (callYoutubeApi) {
+      $.ajax({
+        url: youtubeAPIURL,
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+        // get a random playlist in the response
+        let randomInt = Math.floor(Math.random() * response.items.length);
+        let randomPlaylistId = response.items[randomInt].id.playlistId;
+        createIframe(randomPlaylistId);
+      });
+    } else {
+      // if not calling youtube api, load default playlist
+      let defaultPlaylist = "PL0q2VleZJVEkJDlZN46PN-ORuq8YpZk-n";
+      createIframe(defaultPlaylist);
+    }
   });
 }
 
