@@ -1,5 +1,5 @@
 const OPENWEATHER_API_KEY = "5b1c716e64155c6f31f83fc752ff2b1f";
-const YOUTUBE_API_KEY = "AIzaSyBLjGFLuc0nzGozcXH3TKyj0QmdULa_2Uk";
+const YOUTUBE_API_KEY = "AIzaSyAG57O2KP6IuKQnNvZsGtpDbmaz4Zad3o8";
 const YOUTUBE_SEARCH_ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
 let weatherWord;
 let city;
