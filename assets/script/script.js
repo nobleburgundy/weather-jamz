@@ -10,7 +10,6 @@ $(document).ready(function () {
   let history = JSON.parse(window.localStorage.getItem("history")) || [];
   //iterate through local storage history
   for (let i = 0; i < history.length; i++) {
-    //passing the history data of local storage to a function named display History
     displayHistory(history[i]);
   }
 
@@ -20,7 +19,7 @@ $(document).ready(function () {
     apiCalls(city);
   });
 
-  // listen for city input
+  // listen for city input to use for api call and store that data to local storage
   $("#searchBtn").on("click", function () {
     city = $("#citySearch").val();
     if (city) {
@@ -49,18 +48,19 @@ $("#youtubeCheckbox").on("change", function () {
 });
 
 function apiCalls(city) {
+  //API call with user input data
   let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${OPENWEATHER_API_KEY}`;
   $.ajax({
     url: weatherApiUrl,
     method: "GET",
   }).then(function (response) {
+    //Grabs a word that describes the current weather conditions
     weatherWord = response.weather[0].main;
     let weatherContent = displayWeather(response);
     $(".weatherDay").html(weatherContent);
     console.log(weatherContent);
-    console.log(
-      `weatherWord = ${weatherWord}, city = ${city}`
-    ); /*
+    console.log(`weatherWord = ${weatherWord}, city = ${city}`);
+    //Use word to pass as a value for YouTube API call
     let queryString = `?part=snippet&maxResults=25&q=${weatherWord}%20Music&type=playlist&key=${YOUTUBE_API_KEY}`;
     let youtubeAPIURL = YOUTUBE_SEARCH_ENDPOINT + queryString;
     // Switch for calling youtubeApi only when needed
@@ -79,10 +79,11 @@ function apiCalls(city) {
       // if not calling youtube api, load default playlist
       let defaultPlaylist = "PL0q2VleZJVEkJDlZN46PN-ORuq8YpZk-n";
       createIframe(defaultPlaylist);
-    }*/
+    }
   });
 }
 
+//Display weather data, date, and time
 function displayWeather(response) {
   console.log(response);
   let date = new Date();
