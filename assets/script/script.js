@@ -14,13 +14,14 @@ $(document).ready(function () {
     displayHistory(history[i]);
   }
 
+  //Listener for click of any of the previously searched cities
   $("#historyList").on("click", "li", function () {
     city = $(this).text();
     apiCalls(city);
   });
+
   // listen for city input
   $("#searchBtn").on("click", function () {
-    //$("#weather-music-list").empty();
     city = $("#citySearch").val();
     if (city) {
       apiCalls(city);
@@ -30,6 +31,15 @@ $(document).ready(function () {
         displayHistory(city);
       }
     }
+  });
+
+  //Listener on clear button clears the history list
+  $("#clearHistoryBtn").on("click", function () {
+    window.localStorage.clear("history");
+    window.sessionStorage.clear();
+    $("#historyList").empty();
+    history = [];
+    window.localStorage.setItem("history", JSON.stringify(history));
   });
 });
 
@@ -48,7 +58,9 @@ function apiCalls(city) {
     let weatherContent = displayWeather(response);
     $(".weatherDay").html(weatherContent);
     console.log(weatherContent);
-    console.log(`weatherWord = ${weatherWord}, city = ${city}`);
+    console.log(
+      `weatherWord = ${weatherWord}, city = ${city}`
+    ); /*
     let queryString = `?part=snippet&maxResults=25&q=${weatherWord}%20Music&type=playlist&key=${YOUTUBE_API_KEY}`;
     let youtubeAPIURL = YOUTUBE_SEARCH_ENDPOINT + queryString;
     // Switch for calling youtubeApi only when needed
@@ -67,7 +79,7 @@ function apiCalls(city) {
       // if not calling youtube api, load default playlist
       let defaultPlaylist = "PL0q2VleZJVEkJDlZN46PN-ORuq8YpZk-n";
       createIframe(defaultPlaylist);
-    }
+    }*/
   });
 }
 
