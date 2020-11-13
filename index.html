@@ -19,13 +19,13 @@
   <div class="container">
     <div class="columns">
       <div class="column">
+        <!-- REMOVE THE CHECKBOX FOR DEMO -->
+        <label class="checkbox mb-3 float-right">
+          <input type="checkbox" id="youtubeCheckbox">
+          Call YouTube API (only do this if you need to, there's a quota limit)
+        </label>
         <div class="card">
           <div class="card-content is-align-content-center">
-            <!-- REMOVE THE CHECKBOX FOR DEMO -->
-            <label class="checkbox mb-3 float-right">
-              <input type="checkbox" id="youtubeCheckbox">
-              Call YouTube API (only do this if you need to, there's a quota limit)
-            </label>
             <input class="input is-warning is-rounded has-text-weight-bold" id="citySearch" type="text"
               placeholder="City Name..." />
             <div style="display: flex; justify-content: center;"><button
@@ -37,13 +37,13 @@
               <div class="card">
                 <div class="card-content">
                   <div id="display ">
-                    <h1 class="nameTemp has-text-warning is-size-1 is-size-4-mobile"></h1>
-                    <p class="weatherDay has-text-warning is-size-3 is-size-4-mobile"></p>
+                    <h1 class="nameTemp has-text-white is-size-1 is-size-4-mobile"></h1>
+                    <p class="weatherDay has-text-white is-size-3 is-size-4-mobile"></p>
                     <div id="history">
                       <br>
-                      <h2 class="has-text-warning is-size-3 has-text-weight-bold ml-6">Previous
+                      <h2 class="has-text-warning is-size-3 has-text-weight-bold">Previous
                         Searches</h2>
-                      <ul class="has-text-warning is-size-5 ml-6" id="historyList"></ul>
+                      <ul class="has-text-white is-size-5 " id="historyList"></ul>
                     </div>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
             </div>
             <div class="column is-6">
               <div class="card">
-                <h4 class="title has-text-warning mt-6 mr-6">Play Anemoi Jam</h4>
+                <h4 class="title has-text-warning mt-6 has-text-centered">Play Anemoi Jam</h4>
                 <div id="player"></div>
               </div>
             </div>
