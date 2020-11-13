@@ -1,40 +1,56 @@
-
-html, body{
+html,
+body {
   background-color: black;
   margin: 0;
   padding: 0;
-  }
-  
-  .page-header {
+}
+
+.page-header {
   text-align: center;
-  }
-  
-  
-  .card  {
-    background-color: rgba(0, 0, 0, 0.9);
-    color: rgb(250, 248, 248);
-    margin:0;
-    padding:0;
-  
-  
-  }
-  
-  .header {
-    background-color: black ;
-    margin:0;
-    padding:0;
-  }
-  
-  .img-header {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 600px;
-    }
+}
 
+.card {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: rgb(250, 248, 248);
+  margin: 0;
+  padding: 0;
+}
 
+.header {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+}
 
-  .button {
-    text-align: center;
+.img-header {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+}
 
-  }
+.button {
+  text-align: center;
+}
+
+.input {
+  width: 60%;
+  left: 250px;
+}
+
+.shiftRight {
+  position: relative;
+  right: -190px;
+}
+
+#clearLink {
+  font-weight: bolder;
+  text-decoration: none;
+  font-style: italic;
+}
+
+#clearLink:hover {
+  background: none;
+  color: gold;
+  opacity: 0.8;
+}
