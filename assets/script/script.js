@@ -85,11 +85,10 @@ function apiCalls(city) {
 
 //Display weather data, date, and time
 function displayWeather(response) {
-  console.log(response);
-  let date = new Date();
-  return `<br><strong>${date}</strong><br><br><h1><em>${
+  let date = moment().format("dddd, MMMM Do");
+  return `<h2 class="has-text-warning has-text-weight-bold">${date}</h2><h2><em>${
     response.name
-  }</em></h1><img src='http://openweathermap.org/img/wn/${
+  }</em></h2><img src='http://openweathermap.org/img/wn/${
     response.weather[0].icon
   }.png'><strong><em>${weatherWord}</em></strong><br><br>Temperature: ${response.main.temp.toFixed(1)} &deg; F</br> `;
 }
