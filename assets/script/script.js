@@ -8,6 +8,11 @@ let callYoutubeApi = false;
 
 $(document).ready(function () {
   let history = JSON.parse(window.localStorage.getItem("history")) || [];
+  // load last search if exists
+  if (history) {
+    apiCalls(history[history.length - 1]);
+  }
+
   //iterate through local storage history
   for (let i = 0; i < history.length; i++) {
     displayHistory(history[i]);
