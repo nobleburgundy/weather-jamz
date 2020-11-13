@@ -33,7 +33,7 @@ $(document).ready(function () {
   });
 
   //Listener on clear button clears the history list
-  $(".shiftRight").on("click", function () {
+  $("#clearLink").on("click", function () {
     window.localStorage.clear("history");
     window.sessionStorage.clear();
     $("#historyList").empty();

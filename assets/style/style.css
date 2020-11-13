@@ -38,5 +38,21 @@ html, body{
 
   .shiftRight {
     position: relative;
-    right: -200px;
+    right: -190px;
+  }
+
+  #shiftLeft {
+    margin-left: 1px;
+  }
+ 
+  #clearLink {
+    font-weight: bolder;
+    text-decoration: none;
+    font-style: italic;
+  }
+
+  #clearLink:hover {
+    background: none;
+    color: gold;
+    opacity: 0.8;
   }
