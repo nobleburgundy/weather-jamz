@@ -37,3 +37,20 @@ body {
   width: 60%;
   left: 250px;
 }
+
+.shiftRight {
+  position: relative;
+  right: -190px;
+}
+
+#clearLink {
+  font-weight: bolder;
+  text-decoration: none;
+  font-style: italic;
+}
+
+#clearLink:hover {
+  background: none;
+  color: gold;
+  opacity: 0.8;
+}
