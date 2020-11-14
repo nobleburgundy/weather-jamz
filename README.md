@@ -17,17 +17,17 @@ feel the weather on a deeper level.
 - The app will run in the browser and feature dynamically updated HTML and CSS powered by JQuery.
 - OpenWeather API is used to retrieve weather data for cities and YouTube API is employed to generate music playlists.
 
-## Exepctations Obtained from Research on Weather and Music Enthusiasts
+## Expectations Obtained from Research on Weather and Music Enthusiasts
 
-Through information and feedback provided through research of weather and music enthusiast, the following criteria were
+Through information and feedback provided from research of weather and music enthusiast, the following criteria were
 established:
 
 - The weather and music enthusiast is using Anemoi to find the current weather and receive a music video playlist of
   music based on the current weather.
 - When the user opens the app :
-  - There are is a form input to search for a city.
+  - There is a form input to search for a city.
     - When the user searches for a city:
-    - They are presented with current weather conditions and that city is added to the search history.
+      - They are presented with current weather conditions and that city is added to the search history.
       - When they view current weather conditions for that city
       - Then they are presented with the city name, the date, and icon representation of weather conditions, and the
         temperature.
@@ -68,7 +68,7 @@ established:
 - When the user refreshes the application, the saved city(cities) persist as clickable text(s) and the last searched
   city's current weather information is presented, due to the retrieval of data from local storage and subtracting one
   from the retrieved array.
-  - Since the users's searched city(cities) will be generated from an input, JSON.parse and JSON.strigify are used to
+- Since the users's searched city(cities) will be generated from an input, JSON.parse and JSON.strigify are used to
     set and retrieve the searched city(cities) from the client side local storage.
 
 ## Deployed Website and JQuery Code with AJAX calls
