@@ -33,11 +33,6 @@ body {
   text-align: center;
 }
 
-.input {
-  width: 60%;
-  left: 250px;
-}
-
 .shiftRight {
   position: relative;
   right: -190px;
