@@ -4,7 +4,7 @@ const YOUTUBE_SEARCH_ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
 let weatherWord;
 let city;
 // switch to prevet calling the youtube api unless needed due to quota
-let callYoutubeApi = false;
+let callYoutubeApi = true;
 
 $(document).ready(function () {
   let history = JSON.parse(window.localStorage.getItem("history")) || [];
@@ -13,9 +13,8 @@ $(document).ready(function () {
     apiCalls(history[history.length - 1]);
   }
 
-  //iterate through local storage history
+  // empty the list then rebuild with loop through history
   $("#historyList").empty();
-
   for (let i = 0; i < history.length; i++) {
     displayHistory(history[i]);
   }
@@ -32,8 +31,6 @@ $(document).ready(function () {
 
     // empty the history list and re-build it
     $("#historyList").empty();
-
-    //iterate through local storage history
     for (let i = 0; i < history.length; i++) {
       displayHistory(history[i]);
     }
