@@ -4,11 +4,17 @@ const YOUTUBE_SEARCH_ENDPOINT = "https://www.googleapis.com/youtube/v3/search";
 let weatherWord;
 let city;
 // switch to prevet calling the youtube api unless needed due to quota
-let callYoutubeApi = false;
+let callYoutubeApi = true;
 
 $(document).ready(function () {
   let history = JSON.parse(window.localStorage.getItem("history")) || [];
-  //iterate through local storage history
+  // load last search if exists
+  if (history) {
+    apiCalls(history[history.length - 1]);
+  }
+
+  // empty the list then rebuild with loop through history
+  $("#historyList").empty();
   for (let i = 0; i < history.length; i++) {
     displayHistory(history[i]);
   }
@@ -16,11 +22,30 @@ $(document).ready(function () {
   //Listener for click of any of the previously searched cities
   $("#historyList").on("click", "li", function () {
     city = $(this).text();
+
+    // Remove from the array, then add to the end
+    history = history.filter((text) => text !== city);
+
+    // add it to the end of the array
+    history.push(city);
+
+    // empty the history list and re-build it
+    $("#historyList").empty();
+    for (let i = 0; i < history.length; i++) {
+      displayHistory(history[i]);
+    }
+
+    // update local storage
+    window.localStorage.setItem("history", JSON.stringify(history));
+
+    // call apis
     apiCalls(city);
   });
 
   // listen for city input to use for api call and store that data to local storage
-  $("#searchBtn").on("click", function () {
+  $("#weatherSubmitForm").on("submit", function (event) {
+    event.preventDefault();
+
     city = $("#citySearch").val();
     if (city) {
       apiCalls(city);
@@ -35,7 +60,6 @@ $(document).ready(function () {
   //Listener on clear button clears the history list
   $("#clearLink").on("click", function () {
     window.localStorage.clear("history");
-    window.sessionStorage.clear();
     $("#historyList").empty();
     history = [];
     window.localStorage.setItem("history", JSON.stringify(history));
