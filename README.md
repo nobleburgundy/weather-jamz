@@ -74,7 +74,7 @@ established:
 ## Deployed Website and JQuery Code with AJAX calls
 
 \*[Deployed website](https://nobleburgundy.github.io/weather-jamz/) \*[GitHub Repository](https://github.com/nobleburgundy/weather-jamz)
-![Screenshot of deployed website]()
+![Screenshot of deployed website](./assets/img/demo.png)
 
 ## Research Resources
 
